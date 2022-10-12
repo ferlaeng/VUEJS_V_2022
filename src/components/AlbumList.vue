@@ -12,8 +12,8 @@
 		<div class="cover after">
 			<img src="@/assets/album/never-mind-the-bollocks.png" /> 
 		</div>
-		<div class="cover after">
-			<img src="@/assets/album/ramones.png" /> 
+		<div class="cover after" v-for="album in albums" :key="album.name">
+			<img src="'@/assets/album/$(album.cover)'" /> 
 		</div>
 	</div>
 	
@@ -21,8 +21,17 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import album from '@/assets/album.json'
+import {IAlbum} from '@/components/Album'
 export default defineComponent({
-  name: "album-list"
+  name: "album-list",
+  emits:{albumSelected(payload :{album:IAlbum}) 
+  {return payload.album}},
+
+  data(){return{
+	albums: album.album as Array<IAlbum>
+  }}, 
+  methods:{selecionAlbum():void{this.$emit}}
 });
 </script>
 

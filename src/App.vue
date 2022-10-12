@@ -2,14 +2,13 @@
   <div class="container d-flex flex-column">
     <div class="row flex-fill">
       <div class="col">
-        <AlbumList />
+        <AlbumList @albumSelected="albumSelected"/>
       </div>
     </div>
     <div class="row flex-fill">
       <div class="col">
-        <Info />
-      </div>
-    </div>
+        <Info :album="selectedAlbum" />
+      </div>    </div>
   </div>
 </template>
 
@@ -17,11 +16,18 @@
 import AlbumList from '@/components/AlbumList.vue'
 import Info from '@/components/Info.vue'
 import { defineComponent } from 'vue'
+import { IAlbum } from './components/Album';
 export default defineComponent({
   name: 'App',
   components: {
     AlbumList,
     Info
+  },
+  data(){return{
+    selectedAlbum:undefined as IAlbum|undefined
+  }},
+  methods:{
+    albumSelected(album:IAlbum) : void {this.selectedAlbum = album}
   }
 })
 </script>
