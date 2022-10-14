@@ -1,6 +1,11 @@
-// requires
 var db = require('./db-mock.json')
+
+const cors = require('@fastify/cors')
+
 const fastify = require('fastify')()
+
+fastify.register(cors, { })
+
 const fs = require('fs');
 
 
